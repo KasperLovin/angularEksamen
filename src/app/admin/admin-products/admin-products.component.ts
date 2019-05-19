@@ -1,7 +1,6 @@
-import { AppProduct } from './../../models/app-product';
 import { ProductService } from './../../product.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-admin-products',
@@ -10,11 +9,9 @@ import { FormControl } from '@angular/forms';
 })
 export class AdminProductsComponent implements OnInit {
   products$;
-  products: AppProduct[];
-  userSearch: string;
 
   constructor(private ProductService: ProductService) { 
-    this.products$ = this.ProductService.readAll();
+    this.products$ = this.ProductService.adminReadAll();
   }
 
   ngOnInit() {

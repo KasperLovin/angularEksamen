@@ -1,12 +1,6 @@
 <p>  
     <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
-    
-<div>
-    <input placeholder="Search product" value="" [(ngModel)]="userSearch">
-</div>
-<div *ngFor="let product of products | productPipe: userSearch"></div>
-
 
 <table class="table">
     <thead>
@@ -22,7 +16,7 @@
             <td>{{ p.payload.val().price }}</td>
             <td>
                         <!--Routing og key/id-->
-                <a [routerLink]="['/admin/products/',p.payload.key]">Edit</a>
+                <a [routerLink]="['/admin/products',p.payload.key]">Edit</a>
             </td>
         </tr>
     </tbody>

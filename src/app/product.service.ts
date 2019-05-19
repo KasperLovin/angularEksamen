@@ -1,3 +1,4 @@
+import { AppProduct } from 'src/app/models/app-product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
@@ -10,17 +11,21 @@ export class ProductService {
 
   create(product)
   {
-    return this.db.list('/products').push(product);
+    return this.db.list('/products/').push(product);
   }
 
-  readAll()
+  adminReadAll()
   {
-    return this.db.list('/products').snapshotChanges();
+    return this.db.list('/products/').snapshotChanges();
+  }
+  homeReadAll()
+  {
+    return this.db.list('/products/').valueChanges();
   }
 
   get(productId)
   {
-    return this.db.object('/products/' + productId);
+    return this.db.object('/products/' + productId).valueChanges();
   }
 
   update(productId, product)
