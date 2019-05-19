@@ -8,7 +8,13 @@ export class CategoryService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getCategories()
+  adminReadAll()
+  {
+    // Sorterer!
+    return this.db.list('/categories', 
+      ref => ref.orderByChild('name')).snapshotChanges();
+  }
+  homeReadAll()
   {
     // Sorterer!
     return this.db.list('/categories', 
