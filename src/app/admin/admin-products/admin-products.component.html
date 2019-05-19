@@ -1,3 +1,29 @@
-<p>
-  admin-products works!
+<p>  
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
+    
+<div>
+    <input placeholder="Search product" value="" [(ngModel)]="userSearch">
+</div>
+<div *ngFor="let product of products | productPipe: userSearch"></div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products$ | async">
+            <td>{{ p.payload.val().title }}</td>
+            <td>{{ p.payload.val().price }}</td>
+            <td>
+                        <!--Routing og key/id-->
+                <a [routerLink]="['/admin/products/',p.payload.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
