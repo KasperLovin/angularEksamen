@@ -1,9 +1,8 @@
-import { AppProduct } from './../models/app-product';
-import { CategoryService } from './../category.service';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap'
+
 
 @Component({
   selector: 'app-products',
@@ -13,11 +12,10 @@ import 'rxjs/add/operator/switchMap'
 export class ProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
-  categories$
   category: string;
 
 
-  constructor(ProductService: ProductService, CategoryService: CategoryService, route: ActivatedRoute) { 
+  constructor(ProductService: ProductService, route: ActivatedRoute) { 
     
     // her bruger vi Switchmap, for at switche mellem observables
     ProductService
@@ -36,7 +34,6 @@ export class ProductsComponent implements OnInit {
             this.products;
        });
     
-    this.categories$ = CategoryService.homeReadAll();
 
     // For at lave det blå i categories
     
