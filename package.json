@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^9.0.0",
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
@@ -26,8 +27,11 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "firebase": "^6.0.2",
+    "ng2-redux": "^5.1.2",
+    "redux": "^4.0.1",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.5.2",
+    "tassign": "^1.0.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

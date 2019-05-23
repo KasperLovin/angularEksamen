@@ -13,6 +13,8 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgRedux, NgReduxModule} from 'ng2-redux';
+
 
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -29,6 +31,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ShoppingCartService } from './shopping-cart.service';
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
 
 @NgModule({
   declarations: [
@@ -49,12 +53,13 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
   ],
   imports: [
     BrowserModule,
+    NgReduxModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
+      AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
@@ -77,6 +82,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
   ],
   providers: [
     AuthService,
+    ShoppingCartService,
     AuthGuard,
     AdminAuthGuard,
     UserService,
@@ -86,4 +92,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
   
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(ngRedux: NgRedux<IAppState>)
+  {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
