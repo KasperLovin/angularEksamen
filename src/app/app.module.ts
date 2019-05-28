@@ -13,7 +13,8 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgRedux, NgReduxModule} from 'ng2-redux';
+import { NgRedux, NgReduxModule, DevToolsExtension} from '@angular-redux/store';
+//import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 
 
 import { environment } from 'src/environments/environment';
@@ -32,7 +33,7 @@ import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ShoppingCartService } from './shopping-cart.service';
-import { IAppState, rootReducer, INITIAL_STATE } from './store';
+//import { IAppState, rootReducer } from './store';
 
 @NgModule({
   declarations: [
@@ -53,13 +54,13 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
   ],
   imports: [
     BrowserModule,
-    NgReduxModule,
+    NgReduxModule, //NgReduxRouterModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-      AngularFireAuthModule,
+    AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
@@ -93,8 +94,12 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux: NgRedux<IAppState>)
+  /*
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private ngReduxRouter: NgReduxRouter,
+  /private devTool: DevToolsExtension,)
   {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
-  }
+    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);  }
+    */
 }

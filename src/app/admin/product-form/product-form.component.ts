@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take'
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-product-form',
@@ -32,18 +33,18 @@ export class ProductFormComponent implements OnInit {
   save()
   {
     let product = this.form.value;
-    
+
     if(this.id) 
     {
       console.log('Opdaterer')
       // Opdaterer produktet
-      this.ProductService.update(this.id, product)
+      this.ProductService.update(this.id, product);
     }
     else
     {
-      console.log('Opretter')
-      // Laver produktet
+      console.log("Laver Product")
       this.ProductService.create(product);
+
     }
 
       // Tilbage til listen af produkter
@@ -68,6 +69,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group(
       {
+        id: [''],
         title: ['', Validators.required], 
         price: ['', Validators.required],
         category: ['', Validators.required],
@@ -79,5 +81,6 @@ export class ProductFormComponent implements OnInit {
   get f() 
   {
     return this.form.controls;
+    
   }
 }

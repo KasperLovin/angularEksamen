@@ -1,3 +1,11 @@
-<button 
-(click)="login()"
-class="btn btn-primary">Login with Google</button>
+<div *ngIf="!(AuthService.user | async)">
+    <label for="username"></label>
+    <input type="text" id="username" [(ngModel)]="email" placeholder="email">'
+    <input type="password" id="password" [(ngModel)]="password" placeholder="password">
+</div>
+
+<button (click)="onSubmit()" id="submitLogin" class="btn btn-primary" [disabled]="!email || !password">Login</button>
+<button (click)="signup()" class="btn btn-primary" [disabled]="!email || !password">Signup</button>
+<button (click)="loginWithGoogle()" class="btn btn-primary">Login with Google</button>
+
+

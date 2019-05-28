@@ -1,6 +1,7 @@
 import { AppProduct } from 'src/app/models/app-product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,12 @@ export class ProductService {
   {
     return this.db.object('/products/' + productId).remove();
   }
+
+  /*
+  https://www.youtube.com/watch?v=wttrtrfy8YU&list=PL8jcXf-CLpxptJ2mE4xnVd5I0iSGnabEc&index=38
+  getProductId(id: string): Observable<any>
+  {
+    return this.db.object("products/" + id).valueChanges();
+  }
+  */
 }

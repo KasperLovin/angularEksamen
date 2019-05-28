@@ -1,24 +1,26 @@
+/*import { routerReducer } from '@angular-redux/router';
+import { AppProduct } from 'src/app/models/app-product';
 import { count } from 'rxjs/operators';
-import { INCREMENT } from './actions';
 import { tassign} from 'tassign';
+import { combineReducers } from 'redux';
+import { reducer } from './reducer';
 
 
-export interface IAppState
+
+export class IAppState
 {
-    counter: number;
+    isLoggedIn: boolean;
+    products: AppProduct[];
 }
 
-export const INITIAL_STATE: IAppState = {
-    counter: 0
-}
-
-export function rootReducer(state: IAppState, action): IAppState
+export class loginState
 {
-    switch(action.type)
-    {
-        // AUTO INCREMENETING
-        case INCREMENT: 
-            return tassign(state, { counter: state.counter +1 })
-    }
-    return state;
+    isLoggedIn: boolean;
+    products: AppProduct[];
 }
+
+export const rootReducer = combineReducers<IAppState>({
+    reducer: reducer,
+    router: rootReducer
+} as any);
+*/
