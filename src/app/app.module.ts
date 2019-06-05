@@ -13,7 +13,8 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgRedux, NgReduxModule, DevToolsExtension} from '@angular-redux/store';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { createLogger } from 'redux-logger';
 //import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 
 
@@ -33,6 +34,9 @@ import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ShoppingCartService } from './shopping-cart.service';
+import { IAppState } from './interfaces';
+import { initialState } from './store';
+import { reducer } from './redux/reducer';
 //import { IAppState, rootReducer } from './store';
 
 @NgModule({
@@ -76,7 +80,7 @@ import { ShoppingCartService } from './shopping-cart.service';
       { path: 'admin/products/new', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
       { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+    { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] },
       
      
     ])
@@ -94,12 +98,11 @@ import { ShoppingCartService } from './shopping-cart.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  /*
   constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private ngReduxRouter: NgReduxRouter,
-  /private devTool: DevToolsExtension,)
+    ngRedux: NgRedux<IAppState>,
+    //ngReduxRouter: NgReduxRouter,
+    )
   {
-    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);  }
-    */
+    ngRedux.configureStore(reducer, initialState, [createLogger()]);  
+  }
 }

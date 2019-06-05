@@ -24,7 +24,7 @@ export class ProductService {
     return this.db.list('/products/').valueChanges();
   }
 
-  get(productId)
+  editProduct(productId)
   {
     return this.db.object('/products/' + productId).valueChanges();
   }

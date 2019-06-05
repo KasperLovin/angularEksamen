@@ -9,6 +9,10 @@ import { tap, delay } from 'rxjs/operators';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of'
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from './interfaces';
+import { setLoginStatus } from './redux/actions';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,16 +24,23 @@ export class AuthService {
     user$: Observable<firebase.User>;
 
 
-  constructor(private db: AngularFireDatabase, private userService: UserService, private afAuth: AngularFireAuth, private route: ActivatedRoute) {
+  constructor(
+    private db: AngularFireDatabase,
+    private userService: UserService,
+    private afAuth: AngularFireAuth,
+    private route: ActivatedRoute,
+    public ngRedux: NgRedux<IAppState>) {
     this.user$ = afAuth.authState;
     this.afAuth.authState.subscribe(response =>
       {
         if (response && response.uid)
         {
+          this.ngRedux.dispatch(setLoginStatus(true));
           console.log("user is logged in");
         }
         else
         {
+          this.ngRedux.dispatch(setLoginStatus(false));
           console.log("user is not logged in");
         }
       });
