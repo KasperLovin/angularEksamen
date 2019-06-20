@@ -20,6 +20,7 @@ export class BsNavbarComponent {
   {
     this.AuthService.logout();
     this.router.navigate(['/']);
+    window.location.reload();
   }
 
 }

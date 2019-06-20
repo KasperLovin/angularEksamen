@@ -1,23 +1,29 @@
-<p>  
+<div style="padding-top: 80px;">
+    <p>  
     <button id="newProduct" routerLink="/admin/products/new" class="btn btn-primary">New Product</button>
 </p>
+<div>
+    <input placeholder="Search for key" value="" [(ngModel)]="productSearch">
+</div>
 
 <table class="table">
     <thead>
         <tr>
             <th>Title</th>
             <th>Price</th>
+            <th>Key</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async">
+        <tr *ngFor="let p of products$ | async | productPipe: productSearch">
             <td>{{ p.payload.val().title }}</td>
             <td>{{ p.payload.val().price }}</td>
+            <td>{{ p.key }} </td>
             <td>
-                        <!--Routing og key/id-->
                 <a [routerLink]="['/admin/products',p.payload.key]">Edit</a>
             </td>
         </tr>
     </tbody>
 </table>
+</div>

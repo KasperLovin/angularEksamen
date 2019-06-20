@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
   category: string;
   $key: string;
   id;
+  productSearch: string;
 
 
   constructor(private db: AngularFireDatabase, private ProductService: ProductService, route: ActivatedRoute, private cartService: ShoppingCartService) 

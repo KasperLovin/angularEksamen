@@ -1,11 +1,40 @@
-<div *ngIf="!(AuthService.user | async)">
-    <label for="username"></label>
-    <input type="text" id="username" [(ngModel)]="email" placeholder="email">'
-    <input type="password" id="password" [(ngModel)]="password" placeholder="password">
-</div>
 
-<button (click)="onSubmit()" id="submitLogin" class="btn btn-primary" [disabled]="!email || !password">Login</button>
-<button (click)="signup()" class="btn btn-primary" [disabled]="!email || !password">Signup</button>
-<button (click)="loginWithGoogle()" class="btn btn-primary">Login with Google</button>
+<link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Login</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form">
+                    <fieldset>
+                        <div *ngIf="!(AuthService.user | async)">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="username" [(ngModel)]="email" placeholder="Email" name="emailname">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control"type="password" id="password" [(ngModel)]="password" placeholder="Password" name="passwordname">
+                            </div>
+                        </div>
+                        <input (click)="onSubmit()" id="submitLogin" class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!email || !password" value="Login">
+			    	</fieldset>
+			      	</form>
+                      <hr/>
+                    <input (click)="loginWithGoogle()" class="btn btn-lg btn-primary btn-block" type="submit" value="Login via Google">
+                    <hr/>
+                    <input (click)="signup()" id="submitLogin" class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!email || !password" value="Sign me up">
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
 
 

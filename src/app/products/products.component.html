@@ -1,11 +1,13 @@
 
-<div class="row">
+<link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+<div class="row" style="padding-top: 80px;">
+
   <div class="col-3">
     <product-filter [category]="category"> </product-filter>
   </div>
   <div class="col">
     <div class="row">
-        <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <ng-container *ngFor="let p of filteredProducts; let i = index" >
           <div class="col">
               <div class="card" style="width: 15rem;">
                 <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">

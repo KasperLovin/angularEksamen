@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 import { ProductService } from './../../product.service';
 import { CategoryService } from './../../category.service';
 import { Component, OnInit } from '@angular/core';
@@ -74,7 +75,7 @@ export class ProductFormComponent implements OnInit {
     this.form = this.fb.group(
       {
         id: [''],
-        title: ['', Validators.required], 
+        title: ['', [Validators.required, Validators.minLength(3)]], 
         price: ['', Validators.required],
         category: ['', Validators.required],
         imageUrl: ['', Validators.required]
@@ -84,13 +85,13 @@ export class ProductFormComponent implements OnInit {
     
     if (this.id) {
       this.ProductService.editProduct(this.id).subscribe(data =>{
-       this.ngRedux.dispatch(setProduct(data));
-       });
-
-       this.currentProduct$.subscribe(product => {
-        this.form.setValue(product);
-       });
+        this.ngRedux.dispatch(setProduct(data));
+        this.currentProduct$.subscribe(product => {
+          this.form.setValue(product);
+        });
+      });
     }
+    
 
   }
 

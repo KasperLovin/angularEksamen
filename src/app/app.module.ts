@@ -37,6 +37,8 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { IAppState } from './interfaces';
 import { initialState } from './store';
 import { reducer } from './redux/reducer';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material';
 //import { IAppState, rootReducer } from './store';
 
 @NgModule({
@@ -62,27 +64,27 @@ import { reducer } from './redux/reducer';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
+      
+      //{ path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
       
+      { path: '', component: ProductsComponent, canActivate:[AuthGuard]},
       { path: 'check-out', component: CheckOutComponent, canActivate:[AuthGuard]},
       { path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
       { path: 'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard]},
-      
-      
+
       { path: 'admin/products/new', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
       { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-    { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] },
-      
-     
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] },
     ])
   ],
   providers: [

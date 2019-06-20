@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +14,25 @@ export class LoginComponent{
   email: string;
   password: string;
 
-  constructor( private router: Router,private fb: FormBuilder, private AuthService: AuthService /* private actions: Actions */) 
+  constructor( private router: Router,private fb: FormBuilder, private AuthService: AuthService, private snackbar: MatSnackBar) 
   {
 
   }
 
   onSubmit(): void
   {
-    console.log("onSubmit")
-
-      //this.actions.setLoggedIn(true);
       console.log("1");
-      this.AuthService.login(this.email, this.password).subscribe(result => {
+      this.snackbar.open('Logging in', 'close',{
+        duration:2000
+      });
+      if(this.snackbar)
+      {
+        this.AuthService.login(this.email, this.password).subscribe(result => {
         console.log("3");
       });
       console.log("2")
+      }
+
   }
 
   loginWithGoogle()

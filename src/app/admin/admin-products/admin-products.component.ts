@@ -13,7 +13,8 @@ import { setProducts } from 'src/app/redux/actions';
 })
 export class AdminProductsComponent implements OnInit {
   // This goes to your state and takes out the given path in the state
- @select('products') products$: Observable<any>; 
+ @select('products') products$: Observable<any>;
+ productSearch: string; 
 
   constructor(
     private ProductService: ProductService,
