@@ -1,4 +1,4 @@
-<div style="padding-top: 80px;">
+<div>
     <p>  
     <button id="newProduct" routerLink="/admin/products/new" class="btn btn-primary">New Product</button>
 </p>
@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async | productPipe: productSearch">
+        <tr *ngFor="let p of products$ | async | searchPipe: productSearch">
             <td>{{ p.payload.val().title }}</td>
             <td>{{ p.payload.val().price }}</td>
             <td>{{ p.key }} </td>

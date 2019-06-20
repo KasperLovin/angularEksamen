@@ -1,4 +1,3 @@
-import { ProductPipe } from './product.pipe';
 import { ProductService } from './product.service';
 import { CategoryService } from './category.service';
 import { AdminAuthGuard as AdminAuthGuard } from './admin-auth-guard.service';
@@ -37,8 +36,10 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { IAppState } from './interfaces';
 import { initialState } from './store';
 import { reducer } from './redux/reducer';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material';
+import { AdminManageComponent } from './admin/admin-manage/admin-manage.component';
+import { SearchPipe } from './custompipe/search.pipe';
 //import { IAppState, rootReducer } from './store';
 
 @NgModule({
@@ -55,8 +56,9 @@ import { MatSnackBarModule } from '@angular/material';
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    ProductPipe,
-    ProductFilterComponent
+    ProductFilterComponent,
+    AdminManageComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -81,10 +83,13 @@ import { MatSnackBarModule } from '@angular/material';
       { path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
       { path: 'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard]},
 
-      { path: 'admin/products/new', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-      { path: 'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
-      { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard]},
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+      { path: 'admin', component: AdminManageComponent, canActivate:[AuthGuard, AdminAuthGuard], children: [
+        { path: 'products/new', component: ProductFormComponent,},
+        { path: 'products/:id', component: ProductFormComponent, },
+        { path: 'products', component: AdminProductsComponent,},
+        { path: 'orders', component: AdminOrdersComponent, },
+      ]},
+
     ])
   ],
   providers: [
