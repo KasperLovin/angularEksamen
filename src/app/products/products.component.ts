@@ -1,6 +1,6 @@
-import { ShoppingCartService } from './../shopping-cart.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 import { AppProduct } from 'src/app/models/app-product';
-import { ProductService } from './../product.service';
+import { ProductService } from '../services/product.service';
 import { Component, OnInit,  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';

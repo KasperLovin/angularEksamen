@@ -5,7 +5,6 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <a class="nav-link" routerLink="/admin">Admin</a>
     <ul class="navbar-nav mr-auto">
 
       <ng-template #anonymousUser> 
@@ -26,6 +25,7 @@
             <option class="dropdown-item" routerLink="/admin/orders">Manage Orders</option>
             <option id="manageProducts" class="dropdown-item" routerLink="/admin/products">Manage Products</option>
           </ng-container>
+          <a class="dropdown-item" routerLink="/admin">Admin</a>
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>
       </div>

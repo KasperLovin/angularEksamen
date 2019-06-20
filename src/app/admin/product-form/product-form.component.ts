@@ -1,6 +1,6 @@
 import { browser } from 'protractor';
-import { ProductService } from './../../product.service';
-import { CategoryService } from './../../category.service';
+import { ProductService } from '../../services/product.service';
+import { CategoryService } from '../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';

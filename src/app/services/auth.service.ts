@@ -3,15 +3,15 @@ import { Injectable, Pipe } from '@angular/core';
 import * as firebase from 'firebase';
 import { Observable, throwError, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { AppUser } from './models/app-user';
+import { AppUser } from '../models/app-user';
 import { UserService } from './user.service';
 import { tap, delay } from 'rxjs/operators';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of'
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from './interfaces';
-import { setLoginStatus } from './redux/actions';
+import { IAppState } from '../interfaces';
+import { setLoginStatus } from '../redux/actions';
 
 @Injectable({
   providedIn: 'root'

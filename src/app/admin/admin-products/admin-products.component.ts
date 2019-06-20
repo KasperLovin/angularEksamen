@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { ProductService } from './../../product.service';
+import { ProductService } from '../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from 'src/app/interfaces';
