@@ -1,34 +1,28 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">Angular-Shop</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" routerLink="/">Angular Jokes</a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-
       <ng-template #anonymousUser> 
           <li class="nav-item">
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
       </ng-template>
 
-      <div ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
+      <ng-container *ngIf="appUser; else anonymousUser" class="nav-item">
         
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ appUser.email }}
-        </a>
-        
-        <div  ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-          <option class="dropdown-item" routerLink="/my/orders">My Orders</option>
-          <ng-container *ngIf="appUser.isAdmin">
-            <option class="dropdown-item" routerLink="/admin/orders">Manage Orders</option>
-            <option id="manageProducts" class="dropdown-item" routerLink="/admin/products">Manage Products</option>
-          </ng-container>
-          <a class="dropdown-item" routerLink="/admin">Admin</a>
-          <a class="dropdown-item" (click)="logout()">Log Out</a>
-        </div>
-      </div>
-    </ul>
+        <a class="nav-link" routerLink="/my/orders">My Orders</a>
+        <ng-container *ngIf="appUser.isAdmin">
+          <a class="nav-link" routerLink="/admin/orders">Manage Orders</a>
+          <a id="manageProducts" class="nav-link" routerLink="/admin/products">Manage Products</a>
+          <a class="nav-link" routerLink="/admin">Admin</a>
+        </ng-container>
+          <a class="nav-link" (click)="logout()">Log Out</a>
+          <div class="container">
+            <a style="display:block;text-align:center;" class="nav-link" id="dropdown01" aria-haspopup="true" aria-expanded="false">Welcome {{ appUser.email }}</a>
+          </div>
+      </ng-container>   
+      
+     </ul>
   </div>
 </nav>

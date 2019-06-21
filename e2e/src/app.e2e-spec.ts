@@ -6,30 +6,36 @@ describe('workspace-project App', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    browser.waitForAngularEnabled(false);
   });
 
   
   it('1.0 Verify that i can go to login page', () => {
-    browser.get('admin/products');
+    browser.get('/login');
+    expect(browser.getCurrentUrl()).toContain('/login');
     browser.sleep(1000);
   });
   
 
-  it('login by filling out username and password and going to Admin/Products', () =>{
-    browser.sleep(1000);
+  it('1.1 login by filling out username and password and going to the "home" page', () =>{
     element(by.id('username')).sendKeys('kasperlovein@per.dk');
-    browser.sleep(1000);
+    browser.sleep(1000)
+    
     element(by.id('password')).sendKeys('e2etest');
-    browser.sleep(1000);
+    browser.sleep(1000)
     
     element(by.id('submitLogin')).click();
-    browser.sleep(1000);
+    browser.sleep(1000)
 
-    // SPØRG HVORFOR UNDEFINED!
-
+    expect(browser.getCurrentUrl()).toContain('');
+    browser.sleep(1000)
   });
 
-  it('Clicks edit', () =>{
+  it('Clicks edit', () => {
+    element(by.id('dropdown01')).click();
+    browser.sleep(1000)
+    element(by.model(ngModelLocator)).all(by.tagName('option').get(4).click();
+    browser.sleep(1000)
 
   });
 
