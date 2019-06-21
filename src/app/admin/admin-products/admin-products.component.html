@@ -21,7 +21,7 @@
             <td>{{ p.payload.val().price }}</td>
             <td>{{ p.key }} </td>
             <td>
-                <a [routerLink]="['/admin/products',p.payload.key]">Edit</a>
+                <a id="{{ p.key }}" [routerLink]="['/admin/products',p.payload.key]">Edit</a>
             </td>
         </tr>
     </tbody>

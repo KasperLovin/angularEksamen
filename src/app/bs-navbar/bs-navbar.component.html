@@ -14,7 +14,10 @@
         <a class="nav-link" routerLink="/my/orders">My Orders</a>
         <ng-container *ngIf="appUser.isAdmin">
           <a class="nav-link" routerLink="/admin/orders">Manage Orders</a>
-          <a id="manageProducts" class="nav-link" routerLink="/admin/products">Manage Products</a>
+          <div class="manageProductsTag">
+            <a id="manageProducts" class="nav-link" routerLink="/admin/products">Manage Products</a>
+          </div>
+          
           <a class="nav-link" routerLink="/admin">Admin</a>
         </ng-container>
           <a class="nav-link" (click)="logout()">Log Out</a>
