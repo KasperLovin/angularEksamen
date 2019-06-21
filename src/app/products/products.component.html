@@ -13,7 +13,7 @@
                 <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{ p.title }}</h5>
-                  <p class="card-text">{{ p.price | currency:'USD':true }}</p>
+                  <p class="card-text">{{ p.price | currency:'USD':'code' }}</p>
                 </div>
                 <div class="card-footer">
                   <button 
