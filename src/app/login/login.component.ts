@@ -21,14 +21,15 @@ export class LoginComponent{
 
   onSubmit(): void
   {
+    this.snackbar.open('Trying to Login', '',{
+      duration:1000
+    });
       console.log("1");
-      this.snackbar.open('Logging in', 'close',{
-        duration:2000
-      });
       if(this.snackbar)
       {
         this.AuthService.login(this.email, this.password).subscribe(result => {
-        console.log("3");
+          console.log(result + "YO HEJ!")
+
       });
       console.log("2")
       }

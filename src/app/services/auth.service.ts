@@ -12,6 +12,7 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../interfaces';
 import { setLoginStatus } from '../redux/actions';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class AuthService {
     private userService: UserService,
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
+    private snackbar: MatSnackBar,
     public ngRedux: NgRedux<IAppState>) {
     this.user$ = afAuth.authState;
     this.afAuth.authState.subscribe(response =>
@@ -57,19 +59,23 @@ export class AuthService {
 
   login(email: string, password: string):  Observable<boolean> 
   {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    const obs = this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log("Successful login" + value);
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
         localStorage.setItem('returnUrl', returnUrl);
         this.isLoggedIn = true;
+        this.snackbar.open('Welcome ' + value.user.email, 'Have a nice day!',{
+          duration:7000
+        });
       })
-        .catch(err => {
-          console.log("Something went wrong" + err);   
+        .catch(err => { 
           this.isLoggedIn = false; 
+          this.snackbar.open(err, 'Try again',{
+            duration:7000
+          });
         });
         // Making delay to show network calls
-      return Observable.of(null).pipe(delay(1000))
+      return Observable.of(null).pipe(delay(2000));
   }
 
   signUp(email: string, password: string)
@@ -79,9 +85,15 @@ export class AuthService {
       console.log(value.user.uid);
       this.updateUserViaValue(value);
       console.log('Success!', value);
+      this.snackbar.open('Welcome ' + value.user.email, 'Have a nice day!',{
+        duration:7000
+      });
     })
     .catch(err => {
       console.log('Something went wrong:',err.message);
+      this.snackbar.open(err, 'Try again',{
+        duration:7000
+      });
     }); 
   }
 

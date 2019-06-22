@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 describe('workspace-project App', () => {
   let page: AppPage;
+  const image = "https://www.hawksearch.com/wp-content/uploads/Developer.png"
   
 
   beforeEach(() => {
@@ -45,7 +46,7 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
     expect(browser.getCurrentUrl()).toContain('admin/jokes/new');
     expect(element(by.id('title')).getAttribute('value')).toBe('')
-    expect(element(by.id('price')).getAttribute('value')).toBe('')
+    expect(element(by.id('description')).getAttribute('value')).toBe('')
     expect(element(by.id('category')).getAttribute('value')).toBe('')
     expect(element(by.id('imageUrl')).getAttribute('value')).toBe('')
     done();
@@ -54,11 +55,11 @@ describe('workspace-project App', () => {
   it('1.4 Fills out the form and presses save', done => {
     element(by.id('title')).sendKeys('Test Joke')
     browser.sleep(2000);
-    element(by.id('price')).sendKeys(1234)
+    element(by.id('description')).sendKeys("This joke is funny because its a test")
     browser.sleep(2000);
-    element(by.id('category')).sendKeys('Bad Jokes')
+    element(by.id('category')).sendKeys('developer jokes')
     browser.sleep(2000);
-    element(by.id('imageUrl')).sendKeys('https://purepng.com/public/uploads/large/purepng.com-super-mariomariosuper-mariovideo-gamefictional-characternintendoshigeru-miyamotomario-franchise-17015286383789a9am.png')
+    element(by.id('imageUrl')).sendKeys(image)
     browser.sleep(2000);
     element(by.id('savebutton')).click();
     browser.sleep(2000);
@@ -68,13 +69,13 @@ describe('workspace-project App', () => {
   });
 
   it('1.5 Click edit by Key', done => {
-    element(by.id('-LhyxDfpEHntbH2QZCtJ')).click();
+    element(by.id('-LhzGPF_0VOYp6pvZxGt')).click();
     browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toContain('admin/jokes/-LhyxDfpEHntbH2QZCtJ');
+    expect(browser.getCurrentUrl()).toContain('admin/jokes/-LhzGPF_0VOYp6pvZxGt');
     expect(element(by.id('title')).getAttribute('value')).toBe('Test Joke')
-    expect(element(by.id('price')).getAttribute('value')).toBe('1234')
-    expect(element(by.id('category')).getAttribute('value')).toBe('bad jokes')
-    expect(element(by.id('imageUrl')).getAttribute('value')).toBe('https://purepng.com/public/uploads/large/purepng.com-super-mariomariosuper-mariovideo-gamefictional-characternintendoshigeru-miyamotomario-franchise-17015286383789a9am.png')
+    expect(element(by.id('description')).getAttribute('value')).toBe('This joke is funny because its a test')
+    expect(element(by.id('category')).getAttribute('value')).toBe('developer jokes')
+    expect(element(by.id('imageUrl')).getAttribute('value')).toBe(image)
     done();
   });
 
@@ -83,11 +84,11 @@ describe('workspace-project App', () => {
       element(by.id('title')).sendKeys('Test Joke');
   });
   browser.sleep(2000);
-    element(by.id('price')).clear().then(function() {
-      element(by.id('price')).sendKeys('1234');
+    element(by.id('description')).clear().then(function() {
+      element(by.id('description')).sendKeys('This joke is funny because its a test');
   });
     element(by.id('imageUrl')).clear().then(function() {
-      element(by.id('imageUrl')).sendKeys('https://purepng.com/public/uploads/large/purepng.com-super-mariomariosuper-mariovideo-gamefictional-characternintendoshigeru-miyamotomario-franchise-17015286383789a9am.png');
+      element(by.id('imageUrl')).sendKeys(image);
   });
   browser.sleep(2000);
     element(by.id('savebutton')).click();

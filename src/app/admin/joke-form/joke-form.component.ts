@@ -75,7 +75,7 @@ export class jokeFormComponent implements OnInit {
       {
         id: [''],
         title: ['', [Validators.required, Validators.minLength(3)]], 
-        price: ['', Validators.required],
+        description: ['', Validators.required],
         category: ['', Validators.required],
         imageUrl: ['', Validators.required]
       }

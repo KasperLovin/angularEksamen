@@ -10,11 +10,9 @@
       <ng-container *ngIf="appUser; else anonymousUser" class="nav-item">
         <a class="nav-link" routerLink="/">Home</a>
         <ng-container *ngIf="appUser.isAdmin">
-          <a class="nav-link" routerLink="/admin/orders">Manage Orders</a>
           <div class="managejokesTag">
             <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage jokes</a>
-          </div>         
-          <a class="nav-link" routerLink="/admin">Admin</a>
+          </div>
         </ng-container>
           
       </ng-container>   
