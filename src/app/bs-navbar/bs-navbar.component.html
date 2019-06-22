@@ -11,12 +11,12 @@
         <a class="nav-link" routerLink="/">Home</a>
         <ng-container *ngIf="appUser.isAdmin">
           <div class="managejokesTag">
-            <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage jokes</a>
+            <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage Jokes</a>
           </div>
         </ng-container>
-          
+        <a class="nav-link" (click)="logout()">Log Out</a>
       </ng-container>   
      </ul>
   </div>
-  <a class="nav-link" (click)="logout()">Log Out</a>
+ 
 </nav>

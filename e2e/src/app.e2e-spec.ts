@@ -34,8 +34,8 @@ describe('workspace-project App', () => {
     done();
   });
 
-  it('1.2 Clicks "Manage jokes" in the navigations bar', () => {
-    element(by.linkText('Manage jokes')).click();
+  it('1.2 Clicks "Manage Jokes" in the navigations bar', () => {
+    element(by.linkText('Manage Jokes')).click();
     browser.sleep(2000);
     expect(browser.getCurrentUrl()).toContain('admin/jokes');
     browser.sleep(2000);

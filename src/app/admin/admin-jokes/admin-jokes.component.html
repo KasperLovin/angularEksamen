@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>Title</th>
-            <th>Price</th>
+            <th>Description</th>
             <th>Key</th>
             <th></th>
         </tr>
@@ -18,7 +18,7 @@
     <tbody>
         <tr *ngFor="let p of jokes$ | async | searchPipe: jokesearch">
             <td>{{ p.payload.val().title }}</td>
-            <td>{{ p.payload.val().price }}</td>
+            <td>{{ p.payload.val().description }}</td>
             <td>{{ p.key }} </td>
             <td>
                 <button mat-raised-button id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</button>
