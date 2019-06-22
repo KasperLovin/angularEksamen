@@ -1,9 +1,9 @@
 export interface IAppState {
     isLoggedIn: boolean;
-    products: Iproducts[];
+    jokes: Ijokes[];
 }
 
-export interface Iproducts {
+export interface Ijokes {
     key: string;
     id: number;
     title: string;

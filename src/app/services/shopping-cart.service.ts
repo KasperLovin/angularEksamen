@@ -17,9 +17,9 @@ export class ShoppingCartService {
 
   }
 
-  private test(cartId, productId)
+  private test(cartId, jokeId)
   {
-    this.itemRef = this.db.list('/shopping-carts/' + cartId + '/items/' + productId);
+    this.itemRef = this.db.list('/shopping-carts/' + cartId + '/items/' + jokeId);
   }
 
   private create()
@@ -39,9 +39,9 @@ export class ShoppingCartService {
     this.db.object('shopping-carts/' + cartId);
   }
 
-  private getItem(cartId, productId)
+  private getItem(cartId, jokeId)
   {
-    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + jokeId);
   }
 
   private async getOrCreateCartId()
@@ -56,12 +56,12 @@ export class ShoppingCartService {
 
 
 
-  async addToCart(product)
+  async addToCart(joke)
   {
     this.cartId = await this.getOrCreateCartId();
 
-    let item$ = this.getItem(this.cartId, product.key);
-    //let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
+    let item$ = this.getItem(this.cartId, joke.key);
+    //let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + joke.key);
 
     item$.snapshotChanges().pipe(take(1)).subscribe((item:any) => {
 
@@ -77,7 +77,7 @@ export class ShoppingCartService {
     else
     {
       item$.update({
-        product: product.payload.val(),
+        joke: joke.payload.val(),
         quantity:1
       })
     }

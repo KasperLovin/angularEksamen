@@ -14,8 +14,8 @@
         <a class="nav-link" routerLink="/my/orders">My Orders</a>
         <ng-container *ngIf="appUser.isAdmin">
           <a class="nav-link" routerLink="/admin/orders">Manage Orders</a>
-          <div class="manageProductsTag">
-            <a id="manageProducts" class="nav-link" routerLink="/admin/products">Manage Products</a>
+          <div class="managejokesTag">
+            <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage jokes</a>
           </div>
           
           <a class="nav-link" routerLink="/admin">Admin</a>
@@ -25,5 +25,5 @@
       
      </ul>
   </div>
-  <a style="display:block;text-align:center;" class="nav-link" id="dropdown01" aria-haspopup="true" aria-expanded="false">Welcome {{ appUser.email }}</a>
+  
 </nav>

@@ -1,5 +1,5 @@
 
-export interface AppProduct
+export interface Appjoke
 {
     key: string;
     id: number;

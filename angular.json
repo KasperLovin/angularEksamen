@@ -29,7 +29,7 @@
             "es5BrowserSupport": true
           },
           "configurations": {
-            "production": {
+            "jokeion": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -61,8 +61,8 @@
             "browserTarget": "Angular-Shop:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "Angular-Shop:build:production"
+            "jokeion": {
+              "browserTarget": "Angular-Shop:build:jokeion"
             }
           }
         },
@@ -115,8 +115,8 @@
             "devServerTarget": "Angular-Shop:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "Angular-Shop:serve:production"
+            "jokeion": {
+              "devServerTarget": "Angular-Shop:serve:jokeion"
             }
           }
         },

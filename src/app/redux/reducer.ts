@@ -1,7 +1,7 @@
 import { IAppState } from '../interfaces';
-import { SET_LOGIN_STATUS, SET_PRODUCTS, SET_PRODUCT } from './actions';
+import { SET_LOGIN_STATUS, SET_jokes, SET_joke } from './actions';
 
-const INITIAL_STATE: IAppState = {isLoggedIn: false, products: []}
+const INITIAL_STATE: IAppState = {isLoggedIn: false, jokes: []}
 
 export const reducer = (state = INITIAL_STATE, action:any) => {
     switch(action.type)
@@ -11,15 +11,15 @@ export const reducer = (state = INITIAL_STATE, action:any) => {
                 ...state,
                 isLoggedIn: action.status
             }
-        case SET_PRODUCTS:
+        case SET_jokes:
             return {
                 ...state,
-                products: action.products
+                jokes: action.jokes
             }
-        case SET_PRODUCT:
+        case SET_joke:
             return {
                 ...state,
-                currentProduct: action.product
+                currentjoke: action.joke
             }
 
         default:

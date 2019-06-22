@@ -3,11 +3,11 @@
 <div class="row" style="padding-top: 80px;">
 
   <div class="col-3">
-    <product-filter [category]="category"> </product-filter>
+    <joke-filter [category]="category"> </joke-filter>
   </div>
   <div class="col">
     <div class="row">
-        <ng-container *ngFor="let p of filteredProducts; let i = index" >
+        <ng-container *ngFor="let p of filteredjokes; let i = index" >
           <div class="col">
               <div class="card" style="width: 15rem;">
                 <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-footer">
                   <button 
-                    (click)="addToCart(product)"
+                    (click)="addToCart(joke)"
                     class="btn btn-primary btn-block">Add to Cart</button>
                 </div>
               </div>

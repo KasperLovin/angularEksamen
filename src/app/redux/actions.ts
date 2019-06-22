@@ -1,7 +1,7 @@
 
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
-export const SET_PRODUCTS = 'SET_PRODUCTS';
-export const SET_PRODUCT = 'SET_PRODUCT';
+export const SET_jokes = 'SET_jokes';
+export const SET_joke = 'SET_joke';
 
 export const setLoginStatus = status => {
   return {
@@ -10,16 +10,16 @@ export const setLoginStatus = status => {
   }
 }
 
-export const setProducts = products =>  {
+export const setjokes = jokes =>  {
   return {
-    type: SET_PRODUCTS,
-    products
+    type: SET_jokes,
+    jokes
   }
 }
 
-export const setProduct = product =>  {
+export const setjoke = joke =>  {
   return {
-    type: SET_PRODUCT,
-    product
+    type: SET_joke,
+    joke
   }
 }

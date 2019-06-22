@@ -1,4 +1,4 @@
-import { ProductService } from './services/product.service';
+import { jokeservice } from './services/joke.service';
 import { CategoryService } from './services/category.service';
 import { AdminAuthGuard as AdminAuthGuard } from './services/authservice/admin-auth-guard.service';
 import { AuthGuard as AuthGuard } from './services/authservice/auth-guard.service';
@@ -20,18 +20,18 @@ import { createLogger } from 'redux-logger';
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
+import { jokesComponent } from './jokes/jokes.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminjokesComponent } from './admin/admin-jokes/admin-jokes.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { jokeFormComponent } from './admin/joke-form/joke-form.component';
+import { jokeFilterComponent } from './jokes/joke-filter/joke-filter.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { IAppState } from './interfaces';
 import { initialState } from './store';
@@ -47,16 +47,16 @@ import { SearchPipe } from './custompipe/search.pipe';
     AppComponent,
     BsNavbarComponent,
     HomeComponent,
-    ProductsComponent,
+    jokesComponent,
     ShoppingCartComponent,
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
+    AdminjokesComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
-    ProductFilterComponent,
+    jokeFormComponent,
+    jokeFilterComponent,
     AdminManageComponent,
     SearchPipe,
   ],
@@ -74,19 +74,19 @@ import { SearchPipe } from './custompipe/search.pipe';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       
-      //{ path: 'products', component: ProductsComponent },
+      //{ path: 'jokes', component: jokesComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
       
-      { path: '', component: ProductsComponent, canActivate:[AuthGuard]},
+      { path: '', component: jokesComponent, canActivate:[AuthGuard]},
       { path: 'check-out', component: CheckOutComponent, canActivate:[AuthGuard]},
       { path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
       { path: 'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard]},
 
       { path: 'admin', component: AdminManageComponent, canActivate:[AuthGuard, AdminAuthGuard], children: [
-        { path: 'products/new', component: ProductFormComponent,},
-        { path: 'products/:id', component: ProductFormComponent, },
-        { path: 'products', component: AdminProductsComponent,},
+        { path: 'jokes/new', component: jokeFormComponent,},
+        { path: 'jokes/:id', component: jokeFormComponent, },
+        { path: 'jokes', component: AdminjokesComponent,},
         { path: 'orders', component: AdminOrdersComponent, },
       ]},
 
@@ -99,7 +99,7 @@ import { SearchPipe } from './custompipe/search.pipe';
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    jokeservice
   ],
   
   bootstrap: [AppComponent]

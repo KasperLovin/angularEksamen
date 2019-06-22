@@ -1,5 +1,5 @@
 import { browser } from 'protractor';
-import { ProductService } from '../../services/product.service';
+import { jokeservice } from '../../services/joke.service';
 import { CategoryService } from '../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -7,27 +7,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take'
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from 'src/app/interfaces';
-import { setProduct } from 'src/app/redux/actions';
+import { setjoke } from 'src/app/redux/actions';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css']
+  selector: 'app-joke-form',
+  templateUrl: './joke-form.component.html',
+  styleUrls: ['./joke-form.component.css']
 })
-export class ProductFormComponent implements OnInit {
+export class jokeFormComponent implements OnInit {
   categories$;
   form: FormGroup;
-  product = {};
+  joke = {};
   id;
 
-  @select('currentProduct') currentProduct$: Observable<any>;
+  @select('currentjoke') currentjoke$: Observable<any>;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private CategoryService: CategoryService,
-    private ProductService: ProductService,
+    private jokeservice: jokeservice,
     public ngRedux:  NgRedux<IAppState>,
     private router: Router) { 
     this.categories$ = CategoryService.adminReadAll();
@@ -35,36 +35,36 @@ export class ProductFormComponent implements OnInit {
 
   save()
   {
-    let product = this.form.value;
+    let joke = this.form.value;
 
     if(this.id) 
     {
       console.log('Opdaterer')
       // Opdaterer produktet
-      this.ProductService.update(this.id, product);
+      this.jokeservice.update(this.id, joke);
     }
     else
     {
-      console.log("Laver Product")
-      this.ProductService.create(product);
+      console.log("Laver joke")
+      this.jokeservice.create(joke);
 
     }
 
       // Tilbage til listen af produkter
-      console.log('Navigerer til admin/products')
-      this.router.navigate(['/admin/products']);
+      console.log('Navigerer til admin/jokes')
+      this.router.navigate(['/admin/jokes']);
   }
 
   delete()
   {
-    if(!confirm('Are you sure u want to delete this product?')) return;
+    if(!confirm('Are you sure u want to delete this joke?')) return;
     {
       // Sletter udfra id'et
-      this.ProductService.delete(this.id);
+      this.jokeservice.delete(this.id);
 
       // Tilbage til listen af produkter
-      console.log('Navigerer til admin/products')
-      this.router.navigate(['/admin/products']);
+      console.log('Navigerer til admin/jokes')
+      this.router.navigate(['/admin/jokes']);
     }
 
   }
@@ -83,10 +83,10 @@ export class ProductFormComponent implements OnInit {
 
     
     if (this.id) {
-      this.ProductService.editProduct(this.id).subscribe(data =>{
-        this.ngRedux.dispatch(setProduct(data));
-        this.currentProduct$.subscribe(product => {
-          this.form.setValue(product);
+      this.jokeservice.editjoke(this.id).subscribe(data =>{
+        this.ngRedux.dispatch(setjoke(data));
+        this.currentjoke$.subscribe(joke => {
+          this.form.setValue(joke);
         });
       });
     }

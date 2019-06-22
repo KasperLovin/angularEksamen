@@ -1,9 +1,9 @@
 <div>
     <p>  
-    <button id="newProduct" routerLink="/admin/products/new" class="btn btn-primary">New Product</button>
+    <button id="newjoke" routerLink="/admin/jokes/new" class="btn btn-primary">New joke</button>
 </p>
 <div>
-    <input placeholder="Search for key" value="" [(ngModel)]="productSearch">
+    <input placeholder="Search for key" value="" [(ngModel)]="jokesearch">
 </div>
 
 <table class="table">
@@ -16,12 +16,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async | searchPipe: productSearch">
+        <tr *ngFor="let p of jokes$ | async | searchPipe: jokesearch">
             <td>{{ p.payload.val().title }}</td>
             <td>{{ p.payload.val().price }}</td>
             <td>{{ p.key }} </td>
             <td>
-                <a id="{{ p.key }}" [routerLink]="['/admin/products',p.payload.key]">Edit</a>
+                <a id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</a>
             </td>
         </tr>
     </tbody>
