@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take'
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from 'src/app/interfaces';
 import { setProduct } from 'src/app/redux/actions';

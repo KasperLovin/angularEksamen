@@ -21,11 +21,9 @@
           <a class="nav-link" routerLink="/admin">Admin</a>
         </ng-container>
           <a class="nav-link" (click)="logout()">Log Out</a>
-          <div class="container">
-            <a style="display:block;text-align:center;" class="nav-link" id="dropdown01" aria-haspopup="true" aria-expanded="false">Welcome {{ appUser.email }}</a>
-          </div>
       </ng-container>   
       
      </ul>
   </div>
+  <a style="display:block;text-align:center;" class="nav-link" id="dropdown01" aria-haspopup="true" aria-expanded="false">Welcome {{ appUser.email }}</a>
 </nav>

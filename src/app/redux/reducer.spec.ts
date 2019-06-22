@@ -3,7 +3,7 @@ import { reducer } from './reducer';
 import { setLoginStatus, setProduct, setProducts } from './actions';
 
 
-fdescribe('reducer tests', () => {
+describe('Reducer and Action tests', () => {
     const mockInitialState = {
         isLoggedIn: false,
         products: []
@@ -14,14 +14,14 @@ fdescribe('reducer tests', () => {
         ...payload
     })
 
-    it('checks login status', () => {
+    it('Checks login status', () => {
         const mockAction = getMockAction('SET_LOGIN_STATUS', {status: true});
         const state = reducer(mockInitialState, mockAction);
 
         expect(state).toEqual({ ...mockInitialState, isLoggedIn: mockAction.status});
     })
 
-    it('set products action', () => {
+    it('Set products action', () => {
         const products = [1, 2, 3];
         const mockAction = getMockAction('SET_PRODUCTS', { products })
         const state = reducer(mockInitialState, mockAction);
@@ -29,7 +29,7 @@ fdescribe('reducer tests', () => {
         expect(state).toEqual({ ...mockInitialState, products })
     });
 
-    it('set products action', () => {
+    it('Set product action', () => {
         const product = [1, 2, 3];
         const mockAction = getMockAction('SET_PRODUCT', { product })
         const state = reducer(mockInitialState, mockAction);
@@ -37,20 +37,20 @@ fdescribe('reducer tests', () => {
         expect(state).toEqual({ ...mockInitialState, currentProduct: product })
     });
 
-    it('set default state', () => {
+    it('Set default state', () => {
        const state = reducer(mockInitialState, {})
 
        expect(state).toEqual(mockInitialState)
     });
 
-    it('sets action creator login status', () => {
+    it('Sets action creator login status', () => {
         const status = true;
         const action = setLoginStatus(status);
 
         expect(action).toEqual(getMockAction('SET_LOGIN_STATUS', { status }))
     });
 
-    it('sets action creator products', () => {
+    it('Sets action creator products', () => {
         const products = [];
         const action = setProducts(products);
 

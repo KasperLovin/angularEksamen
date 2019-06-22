@@ -1,8 +1,7 @@
 .container{
-    width: 800px;/*adjust*/
     position: absolute;
     left: 0;
-    right: 0;
+    right: 20px;
     margin: auto;
     top: 20;
 }
