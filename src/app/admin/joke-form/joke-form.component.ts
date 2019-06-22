@@ -74,8 +74,8 @@ export class jokeFormComponent implements OnInit {
     this.form = this.fb.group(
       {
         id: [''],
-        title: ['', [Validators.required, Validators.minLength(3)]], 
-        description: ['', Validators.required],
+        title: ['', [Validators.required, Validators.minLength(5)]], 
+        description: ['', [Validators.required, Validators.minLength(10)]],
         category: ['', Validators.required],
         imageUrl: ['', Validators.required]
       }

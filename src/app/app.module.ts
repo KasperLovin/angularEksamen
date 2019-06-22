@@ -40,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdminManageComponent } from './admin/admin-manage/admin-manage.component';
 import { SearchPipe } from './custompipe/search.pipe';
 //import { IAppState, rootReducer } from './store';
@@ -69,7 +70,7 @@ import { SearchPipe } from './custompipe/search.pipe';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSnackBarModule, MatInputModule, MatButtonModule,
+    MatSnackBarModule, MatInputModule, MatButtonModule, MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

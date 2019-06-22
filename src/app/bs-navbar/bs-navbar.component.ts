@@ -2,6 +2,8 @@ import { AppUser } from './../models/app-user';
 import { AuthService } from '../services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ijokes } from '../interfaces';
+import { Appjoke } from '../models/app-joke';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class BsNavbarComponent {
   appUser: AppUser;
+  jokes: Appjoke;
   constructor(private AuthService: AuthService, private router: Router) {
     this.AuthService.appUser$.subscribe(appUser => this.appUser = appUser);
   }

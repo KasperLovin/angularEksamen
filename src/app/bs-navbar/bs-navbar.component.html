@@ -1,22 +1,21 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">Angular Jokes</a>
+  <a style="margin-right:82px;" mat-fab color="primary" class="navbar-brand" routerLink="/">Jokes</a>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <ng-template #anonymousUser> 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a mat-button class="nav-link" routerLink="/login">Login</a>
           </li>
       </ng-template>
       <ng-container *ngIf="appUser; else anonymousUser" class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
         <ng-container *ngIf="appUser.isAdmin">
           <div class="managejokesTag">
-            <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage Jokes</a>
+            <a mat-button id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage Jokes</a>
           </div>
         </ng-container>
-        <a class="nav-link" (click)="logout()">Log Out</a>
+        <a mat-button class="nav-link" (click)="logout()">Log Out</a>
       </ng-container>   
      </ul>
   </div>
- 
+  
 </nav>
