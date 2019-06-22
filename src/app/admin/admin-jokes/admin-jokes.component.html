@@ -1,10 +1,10 @@
 <div>
     <p>  
-    <button id="newjoke" routerLink="/admin/jokes/new" class="btn btn-primary">New joke</button>
+    <button mat-raised-button color="accent" id="newjoke" routerLink="/admin/jokes/new" class="btn btn-primary">New joke</button>
 </p>
-<div>
-    <input placeholder="Search for key" value="" [(ngModel)]="jokesearch">
-</div>
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Search for key" value="" [(ngModel)]="jokesearch">
+</mat-form-field>
 
 <table class="table">
     <thead>
@@ -21,7 +21,7 @@
             <td>{{ p.payload.val().price }}</td>
             <td>{{ p.key }} </td>
             <td>
-                <a id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</a>
+                <button mat-raised-button id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</button>
             </td>
         </tr>
     </tbody>

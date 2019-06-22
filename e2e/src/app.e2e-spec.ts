@@ -56,7 +56,7 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
     element(by.id('price')).sendKeys(1234)
     browser.sleep(2000);
-    element(by.id('category')).sendKeys('bread')
+    element(by.id('category')).sendKeys('Bad Jokes')
     browser.sleep(2000);
     element(by.id('imageUrl')).sendKeys('https://purepng.com/public/uploads/large/purepng.com-super-mariomariosuper-mariovideo-gamefictional-characternintendoshigeru-miyamotomario-franchise-17015286383789a9am.png')
     browser.sleep(2000);
@@ -73,7 +73,7 @@ describe('workspace-project App', () => {
     expect(browser.getCurrentUrl()).toContain('admin/jokes/-LhyxDfpEHntbH2QZCtJ');
     expect(element(by.id('title')).getAttribute('value')).toBe('Test Joke')
     expect(element(by.id('price')).getAttribute('value')).toBe('1234')
-    expect(element(by.id('category')).getAttribute('value')).toBe('bread')
+    expect(element(by.id('category')).getAttribute('value')).toBe('bad jokes')
     expect(element(by.id('imageUrl')).getAttribute('value')).toBe('https://purepng.com/public/uploads/large/purepng.com-super-mariomariosuper-mariovideo-gamefictional-characternintendoshigeru-miyamotomario-franchise-17015286383789a9am.png')
     done();
   });

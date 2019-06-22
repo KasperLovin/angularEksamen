@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <a class="navbar-brand" routerLink="/">Angular Jokes</a>
-
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <ng-template #anonymousUser> 
@@ -8,22 +7,18 @@
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
       </ng-template>
-
       <ng-container *ngIf="appUser; else anonymousUser" class="nav-item">
-        
-        <a class="nav-link" routerLink="/my/orders">My Orders</a>
+        <a class="nav-link" routerLink="/">Home</a>
         <ng-container *ngIf="appUser.isAdmin">
           <a class="nav-link" routerLink="/admin/orders">Manage Orders</a>
           <div class="managejokesTag">
             <a id="managejokes" class="nav-link" routerLink="/admin/jokes">Manage jokes</a>
-          </div>
-          
+          </div>         
           <a class="nav-link" routerLink="/admin">Admin</a>
         </ng-container>
-          <a class="nav-link" (click)="logout()">Log Out</a>
+          
       </ng-container>   
-      
      </ul>
   </div>
-  
+  <a class="nav-link" (click)="logout()">Log Out</a>
 </nav>

@@ -38,6 +38,8 @@ import { initialState } from './store';
 import { reducer } from './redux/reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { AdminManageComponent } from './admin/admin-manage/admin-manage.component';
 import { SearchPipe } from './custompipe/search.pipe';
 //import { IAppState, rootReducer } from './store';
@@ -67,30 +69,12 @@ import { SearchPipe } from './custompipe/search.pipe';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSnackBarModule,
+    MatSnackBarModule, MatInputModule, MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot([
-      
-      //{ path: 'jokes', component: jokesComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'login', component: LoginComponent },
-      
-      { path: '', component: jokesComponent, canActivate:[AuthGuard]},
-      { path: 'check-out', component: CheckOutComponent, canActivate:[AuthGuard]},
-      { path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
-      { path: 'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard]},
-
-      { path: 'admin', component: AdminManageComponent, canActivate:[AuthGuard, AdminAuthGuard], children: [
-        { path: 'jokes/new', component: jokeFormComponent,},
-        { path: 'jokes/:id', component: jokeFormComponent, },
-        { path: 'jokes', component: AdminjokesComponent,},
-        { path: 'orders', component: AdminOrdersComponent, },
-      ]},
-
-    ])
+    RouterModule.forRoot([])
   ],
   providers: [
     AuthService,
