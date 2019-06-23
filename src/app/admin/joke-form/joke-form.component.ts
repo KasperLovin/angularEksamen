@@ -17,7 +17,6 @@ import { Observable } from 'rxjs';
 export class jokeFormComponent implements OnInit {
   categories$;
   form: FormGroup;
-  joke = {};
   id;
 
   @select('currentjoke') currentjoke$: Observable<any>;

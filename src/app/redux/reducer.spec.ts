@@ -2,7 +2,7 @@ import { reducer } from './reducer';
 import { setLoginStatus, setjoke, setjokes } from './actions';
 
 
-fdescribe('Reducer and Action tests', () => {
+describe('Reducer and Action tests', () => {
     const mockInitialState = {
         isLoggedIn: false,
         jokes: []
@@ -13,12 +13,13 @@ fdescribe('Reducer and Action tests', () => {
         ...payload
     })
 
+    // Reducer
     it('Checks login status', () => {
         const mockAction = getMockAction('SET_LOGIN_STATUS', {status: true});
         const state = reducer(mockInitialState, mockAction);
 
         expect(state).toEqual({ ...mockInitialState, isLoggedIn: mockAction.status});
-    })
+    });
 
     it('Set jokes action', () => {
         const jokes = [1, 2, 3];
@@ -42,6 +43,9 @@ fdescribe('Reducer and Action tests', () => {
        expect(state).toEqual(mockInitialState)
     });
 
+    
+    
+    // Action
     it('Sets action creator login status', () => {
         const status = true;
         const action = setLoginStatus(status);

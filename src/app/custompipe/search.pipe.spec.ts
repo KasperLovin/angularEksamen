@@ -2,7 +2,7 @@ import { Appjoke } from './../models/app-joke';
 
 import { SearchPipe } from './search.pipe';
 
-describe('searchPipe', () => {
+fdescribe('searchPipe', () => {
   const pipe = new SearchPipe();
   const jokes: Appjoke[] = [
     {
@@ -41,7 +41,7 @@ describe('searchPipe', () => {
     let search = '-LhzGPF_0VOYp6pvZxGt'
     let result = pipe.transform(jokes, search);
     expect(result.length).toBe(2);
-    
+
     for (let i = 0; i < result.length; i++) 
     {
       expect(result[i].key).toContain(search);
