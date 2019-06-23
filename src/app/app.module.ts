@@ -14,7 +14,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { createLogger } from 'redux-logger';
-//import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 
 
 import { environment } from 'src/environments/environment';
