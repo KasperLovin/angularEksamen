@@ -110,6 +110,7 @@ export class AuthService {
   {
     console.log("logging out")
     this.afAuth.auth.signOut();
+    
   }
 
   get appUser$() : Observable<AppUser>

@@ -22,7 +22,7 @@ export class BsNavbarComponent {
   logout()
   {
     this.AuthService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     window.location.reload();
   }
 
