@@ -1,4 +1,3 @@
-import { browser } from 'protractor';
 import { jokeservice } from '../../services/joke.service';
 import { CategoryService } from '../../services/category.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,9 +28,10 @@ export class jokeFormComponent implements OnInit {
     private CategoryService: CategoryService,
     private jokeservice: jokeservice,
     public ngRedux:  NgRedux<IAppState>,
-    private router: Router) { 
+    private router: Router) 
+    { 
     this.categories$ = CategoryService.adminReadAll();
-  }
+    }
 
   save()
   {
@@ -59,17 +59,13 @@ export class jokeFormComponent implements OnInit {
   {
     if(!confirm('Are you sure u want to delete this joke?')) return;
     {
-      // Sletter udfra id'et
       this.jokeservice.delete(this.id);
-
-      // Tilbage til listen af produkter
-      console.log('Navigerer til admin/jokes')
       this.router.navigate(['/admin/jokes']);
     }
-
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.id = this.route.snapshot.paramMap.get('id');
     this.form = this.fb.group(
       {
@@ -81,22 +77,23 @@ export class jokeFormComponent implements OnInit {
       }
     )
 
-    
-    if (this.id) {
-      this.jokeservice.editjoke(this.id).subscribe(data =>{
+    if (this.id) 
+    {
+      this.jokeservice.editjoke(this.id).subscribe(data => {
         this.ngRedux.dispatch(setjoke(data));
+      
         this.currentjoke$.subscribe(joke => {
-          this.form.setValue(joke);
+          if(joke)
+          {
+            this.form.setValue(joke);
+          }
         });
       });
     }
-    
-
   }
 
   get f() 
   {
     return this.form.controls;
-    
   }
 }

@@ -13,19 +13,25 @@ import { setjokes } from 'src/app/redux/actions';
 })
 export class AdminjokesComponent implements OnInit {
   // This goes to your state and takes out the given path in the state
+  // Select for the redux to know where to look
  @select('jokes') jokes$: Observable<any>;
  jokesearch: string; 
 
   constructor(
-    private jokeservice: jokeservice,
-    public ngRedux: NgRedux<IAppState>,
-    ) { 
-  }
+    private jokeservice: jokeservice, 
+    public ngRedux: NgRedux<IAppState>) 
+    {
+      
+    }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    // uses the service
+    // gets the data
+    // dispatches the data and shows the state
    this.jokeservice.adminReadAll()
     .subscribe(jokes => {
       this.ngRedux.dispatch(setjokes(jokes));
     });
-    }
+  }
 }

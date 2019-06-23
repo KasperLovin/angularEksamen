@@ -8,7 +8,11 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 })
 export class UserService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+    private db: AngularFireDatabase) 
+    {
+
+    }
 
   save(user: firebase.User)
   {

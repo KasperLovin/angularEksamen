@@ -1,8 +1,5 @@
 import { AppPage } from './app.po';
 import { browser, logging, element, by, protractor } from 'protractor';
-import { ifError } from 'assert';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 describe('workspace-project App', () => {
   let page: AppPage;

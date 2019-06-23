@@ -8,7 +8,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AdminAuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private userService: UserService) { }
+  constructor(
+    private auth: AuthService, 
+    private userService: UserService) 
+    {
+    }
 
   canActivate(): Observable<boolean> {
     return this.auth.user$

@@ -1,29 +1,29 @@
 <div>
     <p>  
-    <button mat-raised-button color="warn" id="newjoke" routerLink="/admin/jokes/new" class="btn btn-primary">New joke</button>
-</p>
-<mat-form-field class="example-full-width">
-    <input matInput placeholder="Search for key" value="" [(ngModel)]="jokesearch">
-</mat-form-field>
+        <button mat-raised-button color="warn" id="newjoke" routerLink="/admin/jokes/new" class="btn btn-primary">New joke</button>
+    </p>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Search for key" value="" [(ngModel)]="jokesearch">
+    </mat-form-field>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Key</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let p of jokes$ | async | searchPipe: jokesearch">
-            <td>{{ p.payload.val().title }}</td>
-            <td>{{ p.payload.val().description }}</td>
-            <td>{{ p.key }} </td>
-            <td>
-                <button mat-raised-button id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Key</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of jokes$ | async | searchPipe: jokesearch">
+                <td>{{ p.payload.val().title }}</td>
+                <td>{{ p.payload.val().description }}</td>
+                <td>{{ p.key }} </td>
+                <td>
+                    <button mat-raised-button id="{{ p.key }}" [routerLink]="['/admin/jokes',p.payload.key]">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

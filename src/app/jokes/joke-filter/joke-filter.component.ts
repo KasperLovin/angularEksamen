@@ -6,16 +6,14 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './joke-filter.component.html',
   styleUrls: ['./joke-filter.component.css']
 })
-export class jokeFilterComponent implements OnInit {
+export class jokeFilterComponent {
   categories$;
   @Input('category') category;
 
-  constructor(CategoryService: CategoryService) { 
+  constructor(
+    CategoryService: CategoryService) 
+  { 
     this.categories$ = CategoryService.homeReadAll();
-
-  }
-
-  ngOnInit() {
   }
 
 }

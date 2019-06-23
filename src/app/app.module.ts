@@ -18,20 +18,13 @@ import { createLogger } from 'redux-logger';
 
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
 import { jokesComponent } from './jokes/jokes.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminjokesComponent } from './admin/admin-jokes/admin-jokes.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
 import { jokeFormComponent } from './admin/joke-form/joke-form.component';
 import { jokeFilterComponent } from './jokes/joke-filter/joke-filter.component';
-import { ShoppingCartService } from './services/shopping-cart.service';
 import { IAppState } from './interfaces';
 import { initialState } from './store';
 import { reducer } from './redux/reducer';
@@ -43,20 +36,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdminManageComponent } from './admin/admin-manage/admin-manage.component';
 import { SearchPipe } from './custompipe/search.pipe';
-//import { IAppState, rootReducer } from './store';
 
 @NgModule({
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    HomeComponent,
     jokesComponent,
-    ShoppingCartComponent,
-    CheckOutComponent,
-    OrderSuccessComponent,
-    MyOrdersComponent,
     AdminjokesComponent,
-    AdminOrdersComponent,
     LoginComponent,
     jokeFormComponent,
     jokeFilterComponent,
@@ -65,7 +51,7 @@ import { SearchPipe } from './custompipe/search.pipe';
   ],
   imports: [
     BrowserModule,
-    NgReduxModule, //NgReduxRouterModule.forRoot(),
+    NgReduxModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -79,7 +65,6 @@ import { SearchPipe } from './custompipe/search.pipe';
   ],
   providers: [
     AuthService,
-    ShoppingCartService,
     AuthGuard,
     AdminAuthGuard,
     UserService,
@@ -92,7 +77,6 @@ import { SearchPipe } from './custompipe/search.pipe';
 export class AppModule { 
   constructor(
     ngRedux: NgRedux<IAppState>,
-    //ngReduxRouter: NgReduxRouter,
     )
   {
     ngRedux.configureStore(reducer, initialState, [createLogger()]);  

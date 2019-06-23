@@ -9,22 +9,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private userService: UserService, private AuthService: AuthService, router: Router)
-  {
-
-    AuthService.user$.subscribe(user => {
-      if(user)
-      {
-        // Gemmer i databasen eller laver ham!
-        userService.save(user);
-
-        // Her får vi den lokale storrage, 
-        // så vi kan navigere useren tilbage til hvor han ville hen.
-        let returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
-      }
-    });
-  }
+  title = 'Angular-Jokes'
 }
 
 

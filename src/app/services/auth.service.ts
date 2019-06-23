@@ -1,11 +1,11 @@
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Injectable, Pipe } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { Observable, throwError, of } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppUser } from '../models/app-user';
 import { UserService } from './user.service';
-import { tap, delay } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of'
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
@@ -31,13 +31,16 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
-    public ngRedux: NgRedux<IAppState>) {
+    private router: Router,
+    public ngRedux: NgRedux<IAppState>) 
+  {
     this.user$ = afAuth.authState;
     this.afAuth.authState.subscribe(response =>
       {
         if (response && response.uid)
         {
           this.ngRedux.dispatch(setLoginStatus(true));
+          this.router.navigateByUrl('');
           console.log("user is logged in");
         }
         else
@@ -50,24 +53,22 @@ export class AuthService {
 
   loginWithGoogle()
   {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl', returnUrl);
     console.log('logging in');
     // redirecter dig til google login
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    
   }
 
   login(email: string, password: string):  Observable<boolean> 
   {
-    const obs = this.afAuth.auth.signInWithEmailAndPassword(email, password)
+     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(value => {
-        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-        localStorage.setItem('returnUrl', returnUrl);
         this.isLoggedIn = true;
         this.snackbar.open('Welcome ' + value.user.email, 'Have a nice day!',{
           duration:7000
         });
       })
+      // server side
         .catch(err => { 
           this.isLoggedIn = false; 
           this.snackbar.open(err, 'Try again',{
@@ -110,7 +111,6 @@ export class AuthService {
   {
     console.log("logging out")
     this.afAuth.auth.signOut();
-    
   }
 
   get appUser$() : Observable<AppUser>

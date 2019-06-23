@@ -1,9 +1,8 @@
-import { SET_LOGIN_STATUS } from "./actions";
 import { reducer } from './reducer';
 import { setLoginStatus, setjoke, setjokes } from './actions';
 
 
-describe('Reducer and Action tests', () => {
+fdescribe('Reducer and Action tests', () => {
     const mockInitialState = {
         isLoggedIn: false,
         jokes: []

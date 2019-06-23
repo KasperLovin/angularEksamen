@@ -2,7 +2,6 @@ import { AppUser } from './../models/app-user';
 import { AuthService } from '../services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ijokes } from '../interfaces';
 import { Appjoke } from '../models/app-joke';
 
 
@@ -14,7 +13,11 @@ import { Appjoke } from '../models/app-joke';
 export class BsNavbarComponent {
   appUser: AppUser;
   jokes: Appjoke;
-  constructor(private AuthService: AuthService, private router: Router) {
+  
+  constructor(
+    private AuthService: AuthService, 
+    private router: Router) 
+  {
     this.AuthService.appUser$.subscribe(appUser => this.appUser = appUser);
   }
 
@@ -23,7 +26,6 @@ export class BsNavbarComponent {
   {
     this.AuthService.logout();
     this.router.navigate(['/login']);
-    window.location.reload();
   }
 
 }

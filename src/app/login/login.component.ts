@@ -1,8 +1,5 @@
-//import { Actions } from './../actions';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -14,7 +11,9 @@ export class LoginComponent{
   email: string;
   password: string;
 
-  constructor( private router: Router,private fb: FormBuilder, private AuthService: AuthService, private snackbar: MatSnackBar) 
+  constructor( 
+    private AuthService: AuthService, 
+    private snackbar: MatSnackBar) 
   {
 
   }
@@ -28,12 +27,10 @@ export class LoginComponent{
       if(this.snackbar)
       {
         this.AuthService.login(this.email, this.password).subscribe(result => {
-          console.log(result + "YO HEJ!")
-
+          console.log("2")
       });
-      console.log("2")
+      console.log("3")
       }
-
   }
 
   loginWithGoogle()
@@ -41,7 +38,8 @@ export class LoginComponent{
     this.AuthService.loginWithGoogle();
   }
 
-  signup() {
+  signup() 
+  {
     this.AuthService.signUp(this.email, this.password);
     this.email = this.password = '';
   }

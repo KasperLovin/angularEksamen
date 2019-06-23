@@ -1,10 +1,7 @@
-import { ShoppingCartService } from '../services/shopping-cart.service';
-import { Appjoke } from 'src/app/models/app-joke';
 import { jokeservice } from '../services/joke.service';
 import { Component, OnInit,  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap'
-import { Subscription, BehaviorSubject } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -16,9 +13,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class jokesComponent implements OnInit {
 
   specificPics$: AngularFireList<any[]>;
-  currentLike = new BehaviorSubject(null);
 
-  counter = 0;
   jokes: any[] = [];
   filteredjokes: any[] = [];
   category: string;
@@ -27,7 +22,10 @@ export class jokesComponent implements OnInit {
   jokesearch: string;
 
 
-  constructor(private db: AngularFireDatabase, private jokeservice: jokeservice, route: ActivatedRoute, private cartService: ShoppingCartService) 
+  constructor(
+    private db: AngularFireDatabase, 
+    private jokeservice: jokeservice, 
+    route: ActivatedRoute) 
   { 
     
     // her bruger vi Switchmap, for at switche mellem observables
@@ -42,15 +40,6 @@ export class jokesComponent implements OnInit {
             this.jokes.filter(p => p.category === this.category) : 
             this.jokes;
        });
-
-       // HOW TO GET AN ID AND DO SOMETHING WITH IT FIREBASE
-    
-
-  }
-
-  addToCart(joke: Appjoke)
-  {
-    this.cartService.addToCart(joke);
   }
 
 
