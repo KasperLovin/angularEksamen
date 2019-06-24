@@ -40,7 +40,11 @@ export class AuthService {
         if (response && response.uid)
         {
           this.ngRedux.dispatch(setLoginStatus(true));
-          this.router.navigateByUrl('');
+          const returnUrl = this.route.snapshot.queryParams.returnUrl;
+          if (returnUrl) { 
+           this.router.navigate([returnUrl])
+          }
+          // this.router.navigateByUrl('');
           console.log("user is logged in");
         }
         else
@@ -53,10 +57,14 @@ export class AuthService {
 
   loginWithGoogle()
   {
+    const returnUrl = this.route.snapshot.queryParams.returnUrl;
     console.log('logging in');
     // redirecter dig til google login
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    
+    if(!returnUrl)
+    {
+      this.router.navigate(['/'])
+    }
   }
 
   login(email: string, password: string):  Observable<boolean> 
@@ -67,6 +75,8 @@ export class AuthService {
         this.snackbar.open('Welcome ' + value.user.email, 'Have a nice day!',{
           duration:7000
         });
+        
+        this.router.navigate(['/'])
       })
       // server side
         .catch(err => { 
@@ -81,11 +91,16 @@ export class AuthService {
 
   signUp(email: string, password: string)
   {
+    const returnUrl = this.route.snapshot.queryParams.returnUrl;
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     .then(value => {
       console.log(value.user.uid);
       this.updateUserViaValue(value);
       console.log('Success!', value);
+      if(!returnUrl)
+      {
+        this.router.navigate(['/'])
+      }
       this.snackbar.open('Welcome ' + value.user.email, 'Have a nice day!',{
         duration:7000
       });
@@ -111,6 +126,7 @@ export class AuthService {
   {
     console.log("logging out")
     this.afAuth.auth.signOut();
+    this.router.navigate(['/login']);
   }
 
   get appUser$() : Observable<AppUser>
